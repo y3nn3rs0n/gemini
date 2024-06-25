@@ -1,8 +1,7 @@
-import 'package:chatbot_ai/chat_screen.dart';
-import 'package:chatbot_ai/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
+import 'package:gemini_test/chat_screen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -10,7 +9,7 @@ class SplashScreen extends StatelessWidget {
   Future<void> init(BuildContext context) async {
     await dotenv.load(fileName: ".env");
     Gemini.init(apiKey: dotenv.env['API_TOKEN'].toString());
-    Future.delayed(const Duration(seconds: 1), () {
+    Future.delayed(const Duration(seconds: 3), () {
       if (!context.mounted) return;
       Navigator.pushReplacement(
         context,
@@ -23,7 +22,7 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     init(context);
     return Scaffold(
-      backgroundColor: Colors.pinkAccent,
+      backgroundColor: Colors.black,
       body: SafeArea(
         child: Center(
           child: Column(
@@ -41,9 +40,21 @@ class SplashScreen extends StatelessWidget {
                 style: TextStyle(color: Colors.white, fontSize: 10),
               ),
               Image.asset(
-                'assets/images/gemini.png',
-                height: 200,
-              )
+                'assets/images/Gemini-Logo.png',
+                scale: 5,
+              ),
+               const Text(
+                '+',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 40),
+              ),
+              SizedBox(height: 15,),
+              Image.asset(
+                'assets/images/flutter.png',
+                scale: 5,
+              ),
             ],
           ),
         ),
